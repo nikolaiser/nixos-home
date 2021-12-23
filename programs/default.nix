@@ -1,0 +1,6 @@
+[
+  ./fish
+  ./starship
+  ./neovim
+  ./git
+]
