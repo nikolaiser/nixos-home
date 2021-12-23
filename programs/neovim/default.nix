@@ -9,24 +9,32 @@ let
 
 
   myVimPlugins = with plugins; [
-    vim-nix
-    vim-fish
-    material-vim
+    vim-nix        # nix support
+    vim-fish       # fish shell highlighting
+    material-vim   #
+    coc-nvim       # LSP client + autocompletion
+    vim-easy-align # alignment
   ];
   
 
-  baseConfig = builtins.readFile ./config.vim;
+  baseConfig    = builtins.readFile ./config.vim;
   pluginsConfig = builtins.readFile ./plugins.vim;
-
-  vimConfig = baseConfig + pluginsConfig;
+  cocConfig     = builtins.readFile ./coc.vim;
+  cocSettings   = builtins.toJSON (import ./coc-settings.nix);
+  vimConfig     = baseConfig + pluginsConfig + cocConfig;
 in
 {
   programs.neovim = {
-    enable = true;
+    enable      = true;
     extraConfig = vimConfig;
-    plugins = myVimPlugins;
-    vimAlias = true;
+    plugins     = myVimPlugins;
+    vimAlias    = true;
     withPython3 = true;
+    withNodeJs  = true; # for coc.nvim
+  };
+
+  xdg.configFile = {
+    "nvim/coc-settings.json".text = cocSettings;
   };
 
 }

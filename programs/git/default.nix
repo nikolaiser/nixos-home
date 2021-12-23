@@ -19,8 +19,7 @@ in
       ca = "commit -am";
     };
     extraConfig = gitConfig;
-
-    userEmail = "nickolayser@gmail.com";
-    userName = "nikolaiser";
+    userEmail   = "nickolayser@gmail.com";
+    userName    = "nikolaiser";
   };
 }

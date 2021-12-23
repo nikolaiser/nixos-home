@@ -2,17 +2,20 @@
 
 let
   defaultPackages = with pkgs;[
-    tdesktop
-    tree
-    xclip
-    ntfs3g
-    openjdk11
+    tdesktop  # telegram desctop client
+    tree      # pretty print files in tree
+    xclip     # work with clipboard from command-line
+    ntfs3g    # ntfs support
+    openjdk11 # jdk
+    nix-doc   # search nix documentation
+    vlc       # media player
+    rnix-lsp  # nix lsp server
   ];
   gnomePackages = with pkgs.gnome; [
-    eog
-    evince
-    gnome-tweak-tool
-    nautilus
+    eog              # image viewer
+    evince           # pdf viewer
+    gnome-tweak-tool # gnome tweaks
+    nautilus         # file explorer
   ];
 
   gnomeExtensions = with pkgs.gnomeExtensions; [
@@ -31,10 +34,10 @@ in
   programs.home-manager.enable = true;
 
   home = {
-    username = "nikolaiser";
+    username      = "nikolaiser";
     homeDirectory = "/home/nikolaiser";
-    stateVersion = "22.05";
-    packages = defaultPackages ++ gnomePackages ++ gnomeExtensions ++ jetbrainsPackages ++ scripts;
+    stateVersion  = "22.05";
+    packages      = defaultPackages ++ gnomePackages ++ gnomeExtensions ++ jetbrainsPackages ++ scripts;
   };
 
   nixpkgs.config = {

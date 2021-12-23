@@ -5,8 +5,7 @@ let
 in
 {
   programs.fish = {
-    enable = true;
-    
+    enable  = true;
     plugins = [ custom.theme ];
   };
 
