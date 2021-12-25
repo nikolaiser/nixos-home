@@ -14,7 +14,7 @@ let
     vim-nix             # nix support
     vim-fish            # fish shell highlighting
     material-vim        #
-    #coc-nvim            # LSP client + autocompletion
+    coc-nvim            # LSP client + autocompletion
     #coc-metals
     vim-easy-align      # alignment
     vim-scala           # scala plugin
