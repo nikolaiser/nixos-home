@@ -1,6 +1,9 @@
 " true color support
 set termguicolors
 
+" leader
+let mapleader=','
+
 " theme
 colorscheme material
 

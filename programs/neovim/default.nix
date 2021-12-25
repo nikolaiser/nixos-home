@@ -14,26 +14,33 @@ let
     vim-nix             # nix support
     vim-fish            # fish shell highlighting
     material-vim        #
-    coc-nvim            # LSP client + autocompletion
+    #coc-nvim            # LSP client + autocompletion
+    #coc-metals
     vim-easy-align      # alignment
     vim-scala           # scala plugin
     nerdtree            # tree explorer
     nerdtree-git-plugin # show files git status on the NerdTree
     nvim-metals         # metals support for neovim
+    lualine-nvim
+    nerdcommenter
+    
     plenary-nvim
+    nvim-lspconfig
     nvim-cmp
-    vim-vsnip
-    cmp-vsnip
     cmp-nvim-lsp
+    cmp-vsnip
+    vim-vsnip
+    nvim-dap
+    telescope-nvim
   ];
   
 
   baseConfig    = builtins.readFile ./config.vim;
   pluginsConfig = builtins.readFile ./plugins.vim;
-  cocConfig     = builtins.readFile ./coc.vim;
-  cocSettings   = builtins.toJSON (import ./coc-settings.nix);
+  #cocConfig     = builtins.readFile ./coc.vim;
+  #cocSettings   = builtins.toJSON (import ./coc-settings.nix);
   metalsConfig  = builtins.readFile ./metals.vim;
-  vimConfig     = baseConfig + pluginsConfig + cocConfig + metalsConfig;
+  vimConfig     = baseConfig + pluginsConfig + metalsConfig;
   neovim-6      = pkgs.callPackage ./nightly.nix {};
 
 in
@@ -48,8 +55,8 @@ in
     withNodeJs  = true; # for coc.nvim
   };
 
-  xdg.configFile = {
-    "nvim/coc-settings.json".text = cocSettings;
-  };
+  #xdg.configFile = {
+    #"nvim/coc-settings.json".text = cocSettings;
+  #};
 
 }
