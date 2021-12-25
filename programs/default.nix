@@ -3,4 +3,5 @@
   ./starship
   ./neovim
   ./git
+  ./alacritty
 ]
