@@ -36,6 +36,11 @@ end
 vim.opt_global.completeopt = { "menu", "noinsert", "noselect" }
 vim.opt_global.shortmess:remove("F"):append("c")
 
+-- Tee View Protocol
+
+map("n", "<leader>t", "<cmd>lua require('metals.tvp').toggle_tree_view()<CR>")
+map("n", "r", "<cmd>lua require('metals.tvp').reveal_in_tree()<CR>")
+
 -- LSP
 map("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>")
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
@@ -53,6 +58,9 @@ map("n", "<leader>aw", [[<cmd>lua vim.diagnostic.setqflist({severity = "W"})<CR>
 map("n", "<leader>d", "<cmd>lua vim.diagnostic.setloclist()<CR>") -- buffer diagnostics only
 map("n", "[c", "<cmd>lua vim.diagnostic.goto_prev { wrap = false }<CR>")
 map("n", "]c", "<cmd>lua vim.diagnostic.goto_next { wrap = false }<CR>")
+
+map("n", "gds", [[<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>]])
+map("n", "<leader>mc", [[<cmd>lua require("telescope").extensions.metals.commands()<CR>]])
 
 -- Example mappings for usage with nvim-dap. If you don't use that, you can
 -- skip these

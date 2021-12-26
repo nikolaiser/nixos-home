@@ -13,6 +13,8 @@ let
     sbt       # scala build tool
     coursier
     nix-prefetch-github
+    neofetch
+    ranger
   ];
   gnomePackages = with pkgs.gnome; [
     eog              # image viewer
@@ -50,11 +52,17 @@ in
     homeDirectory = "/home/nikolaiser";
     stateVersion  = "22.05";
     packages      = defaultPackages ++ gnomePackages ++ gnomeExtensions ++ jetbrainsPackages ++ scripts ++ defaultFonts;
+
+    sessionVariables = {
+      EDITOR = "nvim";
+      SHELL = "fish";
+    };
   };
 
   nixpkgs.config = {
     allowUnfree = true;
   };
+
 
 
   imports = (import ./programs) ++ [./dconf.nix];

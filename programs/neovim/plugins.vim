@@ -45,7 +45,7 @@ require'lualine'.setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename', 'metals_status()'},
+    lualine_c = {'filename', 'metals_status'},
     lualine_x = {'errr_count("Warn")', 'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}

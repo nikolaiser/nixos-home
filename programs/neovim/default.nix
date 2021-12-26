@@ -22,7 +22,7 @@ let
     nerdtree-git-plugin # show files git status on the NerdTree
     nvim-metals         # metals support for neovim
     lualine-nvim
-    nerdcommenter
+    #nerdcommenter
     
     plenary-nvim
     nvim-lspconfig

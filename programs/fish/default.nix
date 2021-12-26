@@ -11,6 +11,7 @@ in
       ga = "git add";
       gc = "git commit";
       gp = "git push";
+      ssh = "kitty +kitten ssh";
     };
   };
 

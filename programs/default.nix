@@ -3,5 +3,5 @@
   ./starship
   ./neovim
   ./git
-  ./alacritty
+  ./kitty
 ]
