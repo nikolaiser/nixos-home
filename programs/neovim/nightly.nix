@@ -8,8 +8,8 @@ pkgs.neovim-unwrapped.overrideAttrs (
     src = pkgs.fetchFromGitHub {
       owner  = "neovim";
       repo   = "neovim";
-      rev    = "e65b724451ba5f65dfcaf8f8c16afdd508db7359";
-      sha256 = "1iyyj07gz6997h7ndzqgnf0hjid23d48i11a83f8ynms5jh9jymi";
+      rev = "5b839ced692230fe582fde41f79f875ee90451e8";
+      sha256 = "10p6lg5yv9n6wcwdprwvvi56dfcm4wsj54nm0invyx3mhf7374lx";
     };
 
     buildInputs = old.buildInputs ++ [ pkgs.tree-sitter ];
