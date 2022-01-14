@@ -8,7 +8,7 @@ pkgs.neovim-unwrapped.overrideAttrs (
     src = pkgs.fetchFromGitHub {
       owner  = "neovim";
       repo   = "neovim";
-      rev    = "v0.6.0";
+      rev    = "e65b724451ba5f65dfcaf8f8c16afdd508db7359";
       sha256 = "1iyyj07gz6997h7ndzqgnf0hjid23d48i11a83f8ynms5jh9jymi";
     };
 
