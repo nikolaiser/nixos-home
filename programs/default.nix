@@ -4,4 +4,5 @@
   ./neovim
   ./git
   ./kitty
+  ./tmux
 ]

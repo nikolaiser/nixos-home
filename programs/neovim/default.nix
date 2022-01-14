@@ -32,15 +32,17 @@ let
     vim-vsnip
     nvim-dap
     telescope-nvim
+    nvim-treesitter
+    nvim-bqf
   ];
   
 
   baseConfig    = builtins.readFile ./config.vim;
   pluginsConfig = builtins.readFile ./plugins.vim;
-  #cocConfig     = builtins.readFile ./coc.vim;
-  #cocSettings   = builtins.toJSON (import ./coc-settings.nix);
+  cocConfig     = builtins.readFile ./coc.vim;
+  cocSettings   = builtins.toJSON (import ./coc-settings.nix);
   metalsConfig  = builtins.readFile ./metals.vim;
-  vimConfig     = baseConfig + pluginsConfig + metalsConfig;
+  vimConfig     = baseConfig + metalsConfig + cocConfig + pluginsConfig;
   neovim-6      = pkgs.callPackage ./nightly.nix {};
 
 in
@@ -55,8 +57,8 @@ in
     withNodeJs  = true; # for coc.nvim
   };
 
-  #xdg.configFile = {
-    #"nvim/coc-settings.json".text = cocSettings;
-  #};
+  xdg.configFile = {
+    "nvim/coc-settings.json".text = cocSettings;
+  };
 
 }

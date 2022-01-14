@@ -42,4 +42,22 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-autocmd FileType scala,sbt let b:coc_suggest_disable = 1
+augroup CocGroup
+  autocmd!
+  autocmd BufNew,BufRead * execute "CocDisable"
+  autocmd BufNew,BufEnter *.nix execute "silent! CocEnable"
+augroup end
+
+let g:my_coc_file_types = ['nix', 'vim']
+
+function! s:disable_coc_for_type()
+	if index(g:my_coc_file_types, &filetype) == -1
+	        let b:coc_enabled = 0
+	endif
+endfunction
+
+augroup CocGroup
+	autocmd!
+	autocmd BufNew,BufEnter * call s:disable_coc_for_type()
+augroup end
+

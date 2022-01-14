@@ -15,22 +15,12 @@ nnoremap <C-f> :NERDTreeFind<CR>
 
 filetype plugin on 
 
+:lua require('./metals')
 
 
 :lua << END
 
-local function err_count(severity)
-  local diags = vim.diagnostic.get(api.nvim_get_current_buf(), { severity = severity })
-  if not next(diags) then
-    return ""
-  else
-    return " " .. #diags .. " "
-  end
-end
 
-local function metals_status()
-  return vim.g["metals_status"] or ""
-end
 
 
 require'lualine'.setup {
@@ -45,7 +35,7 @@ require'lualine'.setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename', 'metals_status'},
+    lualine_c = {'filename', 'vim.g["metals_status"] or ""'},
     lualine_x = {'errr_count("Warn")', 'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
@@ -62,6 +52,18 @@ require'lualine'.setup {
   extensions = {}
 }
 
+local function err_count(severity)
+  local diags = vim.diagnostic.get(api.nvim_get_current_buf(), { severity = severity })
+  if not next(diags) then
+    return ""
+  else
+    return " " .. #diags .. " "
+  end
+end
+
+local function metals_status()
+  return vim.g["metals_status"] or ""
+end
+
 END
 
-:lua require('./metals')

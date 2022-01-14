@@ -15,6 +15,8 @@ let
     nix-prefetch-github
     neofetch
     ranger
+    fzf
+    bottom
   ];
   gnomePackages = with pkgs.gnome; [
     eog              # image viewer
@@ -56,6 +58,12 @@ in
     sessionVariables = {
       EDITOR = "nvim";
       SHELL = "fish";
+    };
+  };
+
+  programs = {
+    htop = {
+      enable = true;
     };
   };
 

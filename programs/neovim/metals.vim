@@ -43,6 +43,7 @@ map("n", "r", "<cmd>lua require('metals.tvp').reveal_in_tree()<CR>")
 
 -- LSP
 map("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>")
+map("n", "<leader>cl", "<cmd>lua vim.lsp.codelens.run()<CR>")
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
@@ -110,15 +111,7 @@ cmp.setup({
   },
 })
 
-----------------------------------
--- COMMANDS ----------------------
-----------------------------------
--- LSP
-cmd([[augroup lsp]])
-cmd([[autocmd!]])
-cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
-cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(metals_config)]])
-cmd([[augroup end]])
+
 
 -- Need for symbol highlights to work correctly
 vim.cmd([[hi! link LspReferenceText CursorColumn]])
@@ -134,6 +127,8 @@ metals_config.settings = {
   showImplicitArguments = true,
   excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
   serverVersion = "0.10.9+133-9aae968a-SNAPSHOT",
+  showInferredType = true,
+  showImplicitConversionsAndClasses,
 }
 
 -- Example of how to ovewrite a handler
@@ -199,5 +194,15 @@ cmd([[hi! link LspReferenceWrite CursorColumn]])
 
 -- If you want a :Format command this is useful
 cmd([[command! Format lua vim.lsp.buf.formatting()]])
+
+----------------------------------
+-- COMMANDS ----------------------
+----------------------------------
+-- LSP
+cmd([[augroup lsp]])
+cmd([[autocmd!]])
+cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
+cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(metals_config)]])
+cmd([[augroup end]])
 
 EOF
