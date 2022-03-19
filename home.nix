@@ -1,8 +1,10 @@
 { config, pkgs, ... }:
 
 let
+  unstable = import <nixpkgs-unstable> {};
   defaultPackages = with pkgs;[
-    tdesktop  # telegram desctop client
+    unstable.tdesktop  # telegram desctop client
+    file
     tree      # pretty print files in tree
     xclip     # work with clipboard from command-line
     ntfs3g    # ntfs support
@@ -17,6 +19,11 @@ let
     ranger
     fzf
     bottom
+    via
+    gnome-latex
+    texlive.combined.scheme-full
+    docker
+    openssl
   ];
   gnomePackages = with pkgs.gnome; [
     eog              # image viewer
@@ -42,6 +49,16 @@ let
     fira-code
     fira-code-symbols
   ];
+
+  outline-manager = pkgs.appimageTools.wrapType2 {
+    name = "outline";
+    src = pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/manager/stable/Outline-Manager.AppImage";
+      sha256 = "1dcl5rqhg2036p3jjbz7ykx5rxgy8yzjnqd6vj0hi3wxmgp7ajh0";
+    };
+
+    extraPkgs = pkgs: with pkgs; [ ]; 
+  };
 in
 {
 
@@ -53,7 +70,7 @@ in
     username      = "nikolaiser";
     homeDirectory = "/home/nikolaiser";
     stateVersion  = "22.05";
-    packages      = defaultPackages ++ gnomePackages ++ gnomeExtensions ++ jetbrainsPackages ++ scripts ++ defaultFonts;
+    packages      = defaultPackages ++ gnomePackages ++ gnomeExtensions ++ jetbrainsPackages ++ scripts ++ defaultFonts ++ [outline-manager];
 
     sessionVariables = {
       EDITOR = "nvim";
